@@ -1,0 +1,130 @@
+Code 3612...Process String with special Operations 
+
+class Solution {
+public:
+    string processStr(string s) {
+        string result;
+        int n = s.length();
+
+        for (int i = 0; i < n; i++) {
+            char ch = s[i];
+
+            if (ch == '*') {
+                if (result.length() != 0) {
+                    result.pop_back();
+                }
+            } 
+            else if (ch == '#') {
+                result += result;
+            } 
+            else if (ch == '%') {
+                reverse(result.begin(), result.end());
+            } 
+            else if (ch >= 'a' && ch <= 'z') {
+                result.push_back(ch);
+            }
+        }
+
+        return result;
+    }
+};
+
+
+
+binary search algorithm GFG
+
+#include<bits/stdc++.h>
+using namespace std;
+ 
+ int binarySearch(vector<int> &arr, int target){
+    int low = 0;
+    int high = arr.size() -1;
+    while(low <= high){
+        int mid = low + (high-low)/2;
+        
+        if(arr[mid] == target){
+            return mid;
+        }
+        if(arr[mid] < target){
+            low = mid + 1;
+        }
+        else{
+            high = mid-1;
+        }
+    }
+    return -1;
+}
+    
+int main(){
+    vector<int> arr ={2,3,4,6,8,10};
+    int target = 10;
+    int result = binarySearch(arr, target);
+    
+    if(result = -1){
+        cout << "Element not found";
+    }
+    else{
+    cout<< "Element found at "<< result;
+    }
+    return 0;
+}
+
+
+
+
+FIND CEIL SORTED ARRAY GFG
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int findCeil(const vector<int>& arr, int x) {
+    int low = 0, high = arr.size() - 1;
+    int ceilIndex = -1;
+
+    while (low <= high) {
+        int mid = low + (high - low) / 2;
+
+        if (arr[mid] >= x) {
+            ceilIndex = mid;     
+            high = mid - 1;     
+        } else {
+            low = mid + 1;      
+        }
+    }
+    return ceilIndex;
+}
+
+int main() {
+    vector<int> arr = {1, 2, 8, 10, 10, 12, 19};
+    int x = 5;
+    int index = findCeil(arr, x);
+    if (index != -1)
+        cout << "Ceil of " << x << " is " << arr[index] << " at index " << index;
+    else
+        cout << "Ceil does not exist";
+    return 0;
+}
+
+
+
+code 162
+find the peak
+class Solution {
+public:
+    int findPeakElement(vector<int>& nums) {
+        int left = 0;
+        int right = nums.size() - 1;
+
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+            if (nums[mid] > nums[mid + 1]) {
+                right = mid;
+            } else {
+                left = mid + 1;
+            }
+        }
+
+        return left;        
+    }
+};
