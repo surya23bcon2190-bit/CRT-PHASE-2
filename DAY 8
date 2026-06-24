@@ -1,0 +1,98 @@
+LEETCODE CODE 739
+class Solution {
+public:
+    vector<int> dailyTemperatures(vector<int>& temperatures) {
+        stack<int> st;
+        vector<int> res(temperatures.size(), 0);
+
+        for (int i = 0; i < temperatures.size(); i++) {
+            while (!st.empty() && temperatures[i] > temperatures[st.top()]) {
+                int idx = st.top(); st.pop();
+                res[idx] = i - idx;
+            }
+            st.push(i);
+        }
+
+        return res;        
+    }
+};
+
+
+
+class Solution{
+    public:
+        vector<int> dailyTemperatures(vector<int>& temp){
+            int n = temp.size();
+            vector<int> ans(n,0);
+            stack<int> st;
+
+            for(int i=n; i>=0; i--){
+                while(!st.empty() && temp[i] >= temp[st.top()]){
+                    st.pop();
+                }
+                if(!st.empty()){
+                    ans[i] = st.top() - i;
+                }
+                st.push(i);
+            }
+            return ans;
+        }
+};
+
+
+LEETCODE CODE 1047
+
+
+class Solution{
+    public:
+        vector<int> dailyTemperatures(vector<int>& temp){
+            int n = temp.size();
+            vector<int> ans(n,0);
+            stack<int> st;
+
+            for(int i=n; i>=0; i--){
+                while(!st.empty() && temp[i] >= temp[st.top()]){
+                    st.pop();
+                }
+                if(!st.empty()){
+                    ans[i] = st.top() - i;
+                }
+                st.push(i);
+            }
+            return ans;
+        }
+};
+
+
+LEETCODE CODE 735
+class Solution {
+public:
+    vector<int> asteroidCollision(vector<int>& asteroids) {
+        stack<int> st;
+
+        for(int a: asteroids){
+            if(a > 0){
+                st.push(a);
+            }else{
+                while(!st.empty() && st.top() > 0 && st.top() < -a){
+                    st.pop();
+                }
+                if(st.empty() || st.top() < 0){
+                    st.push(a);
+                }
+                if(!st.empty() && st.top() == -a){
+                    st.pop();
+                }
+            }
+        }
+        vector<int> res(st.size());
+        int i= st.size() -1;
+        while(!st.empty()){
+            res[i--] = st.top();
+            st.pop();
+        }
+        return res;
+
+        
+    }
+};
