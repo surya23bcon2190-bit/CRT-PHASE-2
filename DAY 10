@@ -1,1 +1,46 @@
+//LEETCODE 111
+// MINIMUM DEPTH OF BINARY TREE
+
+class Solution {
+public:
+    int minDepth(TreeNode* root) {
+        if(root == NULL){
+            return 0;
+        }
+        int LD = minDepth(root->left);
+        int RD = minDepth(root->right);
+
+        if(root->left == NULL && root->right == NULL)
+        return 1;
+
+        if(root->left == NULL)
+        return 1 + RD;
+
+        if(root->right == NULL)
+        return 1+ LD;
+
+        return min(LD, RD)+1;
+    }
+};
+
+//LEETCODE 100
+// SAME TREE
+
+class Solution {
+public:
+    bool isSameTree(TreeNode* p, TreeNode* q) {
+        if(p == NULL && q == NULL){
+            return true;
+        }
+        if(p == NULL || q == NULL || p->val != q->val){
+            return false;
+        }
+        if(p && q && p->val == q->val){
+            return isSameTree(p->left , q->left) && isSameTree(p->right, q->right);
+        }
+        return false;        
+    }
+};
+
+
 
