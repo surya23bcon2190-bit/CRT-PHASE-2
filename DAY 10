@@ -43,4 +43,55 @@ public:
 };
 
 
+//LEETCODE CODE 110
+//BALANCED BINARY TREE
 
+class Solution {
+public:
+    int traversal(TreeNode* root){
+        if(root == NULL){
+            return 0;
+        }
+        int lh = traversal(root->left);
+        if(lh == -1){
+            return -1;
+        }
+        int rh = traversal(root->right);
+        if(rh == -1){
+            return -1;
+        }
+        if(abs(lh-rh) > 1){
+            return -1;
+        }
+        return max(lh, rh)+1;
+    }        
+        bool isBalanced(TreeNode* root) {
+            return traversal(root) != -1;
+    }
+};
+
+
+//LEETCODE CODE 543
+//DIAMETER OF BINARY TREE
+
+class Solution {
+public:
+    int res = 0;
+
+    int traversal(TreeNode* root) {
+        if (root == nullptr)
+            return 0;
+
+        int l = traversal(root->left);
+        int r = traversal(root->right);
+
+        res = max(res, l + r);
+
+        return 1 + max(l, r);
+    }
+
+    int diameterOfBinaryTree(TreeNode* root) {
+        traversal(root);
+        return res;
+    }
+};
