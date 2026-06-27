@@ -1,1 +1,64 @@
-//LEETCODE CODE 
+//LEETCODE CODE 101
+// SYMMETRIC TREE
+
+class Solution {
+public:
+    bool traversal(TreeNode* n1, TreeNode* n2) {
+        if (n1 == nullptr && n2 == nullptr) {
+            return true;
+        }
+        
+        if (n1 == nullptr || n2 == nullptr) {
+            return false;
+        }
+        
+        return n1->val == n2->val && traversal(n1->left, n2->right) && traversal(n1->right, n2->left);
+    }
+     bool isSymmetric(TreeNode* root) {
+        return traversal(root->left, root->right);
+    }
+};
+
+//LEETCODE CODE 112
+//PATH SUM 
+
+class Solution {
+public:
+    bool hasPathSum(TreeNode* root, int targetSum) {
+        if (!root) return false;
+
+        if (!root->left && !root->right) {
+            return targetSum - root->val == 0;
+        }
+
+        targetSum -= root->val;
+
+        return hasPathSum(root->left, targetSum) || hasPathSum(root->right, targetSum);        
+    }
+};
+
+
+/*
+GRAPH 
+** Every tree is a graph but not Vice-Versa
+
+There are two types of graph 
+1) Directed
+2) Undirected 
+* In Directed we get direction from one node to other 
+  whereas in Undirected we are free to move with the direction
+3) Cyclic Graph 
+* IN this we can start and end at same position
+4) Edge Weight 
+* In this we Calculate the cost required to move from one node to other.
+
+ 1---------2---------5 \
+ |         |         |  \
+ |         |         |   7
+ |         |         |  /
+ 3---------4---------6 /
+
+DFS OF A GRAPH
+
+
+*/
