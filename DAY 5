@@ -1,5 +1,5 @@
 // Problem -- 1
-// Insert at Head
+// Insert at Head(LINKED-LIST)
 
 #include <iostream>
 using namespace std;
