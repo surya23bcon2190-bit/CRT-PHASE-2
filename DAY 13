@@ -89,3 +89,28 @@ class Solution {
     }
 };
 
+
+// Recursion/ Binary numbers without consecutive 1's
+
+#include <bits/stdc++.h>
+using namespace std;
+void Recursion(int n, string current, int lastDigit) {
+    if (n == 0) {
+        cout << current << endl;
+        return;
+    }
+    Recursion(n - 1, current + "0", 0);
+    if (lastDigit == 0) {
+        Recursion(n - 1, current + "1", 1);
+    }
+}
+int main() {
+    int n;
+    cin >> n;
+    cout << n << endl;
+    Recursion(n, "", 0);
+    return 0;
+}
+
+// IT'S recursion expression will be 
+// f = f(n-1) + f(n-1)
