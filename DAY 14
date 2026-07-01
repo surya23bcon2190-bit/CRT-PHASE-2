@@ -1,0 +1,125 @@
+/*CONSECUTIVE 1'S NOT ALLOWED
+ BAse condition
+      if(n==1)
+      return 2;
+
+      if(n==2)
+      return 3;
+        if(dp[n] != -1)
+            return dp[n];
+
+return dp[n] =  recursive(n-1) + recursive(n-2);
+
+main function(int n){
+  vector<int> dup (n+1, -1)
+    return recursive(n,dp)
+
+*/
+*
+*
+*
+*
+*
+//NORMAL METHOD
+class Solution {
+  public:
+  int recursive(int n, vector<int> &dp){
+        if(n==1) return 2;
+        if(n==2) return 3;
+        
+        if(dp[n] != -1){
+            return dp[n];
+        }
+        
+        return dp[n] = recursive(n-1,dp) + recursive(n-2,dp);
+  }
+    int countStrings(int n) {
+        vector<int> dp(n+1, -1);
+        return recursive(n, dp);
+    }
+};
+*
+*
+*
+*
+*
+*
+//MEMORIZATION 
+class Solution {
+  public:
+    int countStrings(int n) {
+        // code here
+        vector<int> dp(n+1, -1);
+        dp[1] = 2;
+        dp[2] = 3;
+        
+        for(int i = 3; i<=n; i++){
+            dp[i] = dp[i-1] + dp[i-2];
+        }
+        return dp[n];
+    }
+};
+*
+*
+*
+*
+*
+*
+//USING SPACE 
+
+class Solution {
+  public:
+    int countStrings(int n) {
+        // code here
+        if(n==1) return 2;
+        if(n==2) return 3;
+        
+        int prev1 = 2;
+        int prev2 = 3;
+        
+        for(int i = 3; i<=n; i++){
+            int curr = prev1 + prev2;
+            prev2 = prev1;
+            prev1 = curr;
+        }
+        return prev1;
+    }
+};
+
+
+
+
+
+//LEETCODE CODE 507
+// Perfect Number
+
+A perfect number is a positive integer that is equal to the sum
+of its positive divisors, excluding the number itself. A diviso
+r of an integer x is an integer that can divide x evenly.
+
+Given an integer n, return true if n is a perfect number, otherwise
+return false.*/
+
+class Solution {
+public:
+    bool checkPerfectNumber(int num) {
+        if(num == 1) return false;
+        int sum = 1;
+        for(int i = 2; i * i <= num; i++) {
+            if(num % i == 0) {
+                sum += i;
+
+                if(i != num / i)
+                    sum += num / i;
+            }
+        }
+        return sum == num;
+    }
+};
+// tail -> for(i=0--> max)
+// head -> for(i=max-->0)
+
+
+// LEETCODE CODE
+// TILING PROBLEM
+
